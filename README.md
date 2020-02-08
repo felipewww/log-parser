@@ -6,8 +6,14 @@ This app parses a Quake3 game log about every match retrieving information about
 
 ### Prerequisites
 
-- Docker and docker-compose
+- ##### Docker and docker-compose
     - https://docs.docker.com/compose/install/
+
+- ##### Husky
+    - Install Husky locally (outside container) as goal to prevent errored commits
+```
+$ sudo npm install husky
+```
 
 ### Starting up
 
