@@ -4,8 +4,9 @@
   "description": "A basic quake3 game log parser",
   "main": "app.js",
   "scripts": {
-    "watch": "tsc -w --preserveWatchOutput & nodemon dist/app.js",
-    "test": "jest"
+    "test": "CI=true jest --colors",
+    "test:watch": "npm run test -- --coverage=false --silent --noStackTrace --watch",
+    "dev": "tsc -w --preserveWatchOutput & nodemon dist/app.js & npm run test:watch"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,7 @@
   "dependencies": {},
   "devDependencies": {
     "@types/jest": "^25.1.2",
+    "husky": "^4.2.1",
     "jest": "^25.1.0",
     "ts-jest": "^25.2.0",
     "typescript": "^3.7.5"

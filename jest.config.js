@@ -79,16 +79,16 @@ module.exports = {
   // ],
 
   // A map from regular expressions to module names that allow to stub out resources with a single module
-  moduleNameMapper: {
-    "^@Controllers(.*)$": "<rootDir>/src/presentation/controllers/$1",
-    "^@Helpers(.*)$": "<rootDir>/src/presentation/helpers/$1",
-    "^@Repositories(.*)$": "<rootDir>/src/domain/repositories/$1",
-    "^@Models(.*)$": "<rootDir>/src/domain/models/$1",
-    "^@UseCases(.*)$": "<rootDir>/src/domain/usecases/$1",
-    "^@Libs(.*)$": "<rootDir>/src/domain/libraries/$1",
-    "^@Data(.*)$": "<rootDir>/src/data/$1",
-    "^@Mocks(.*)$": "<rootDir>/src/tests/mocks/$1",
-  },
+  // moduleNameMapper: {
+  //   "^@Controllers(.*)$": "<rootDir>/src/presentation/controllers/$1",
+  //   "^@Helpers(.*)$": "<rootDir>/src/presentation/helpers/$1",
+  //   "^@Repositories(.*)$": "<rootDir>/src/domain/repositories/$1",
+  //   "^@Models(.*)$": "<rootDir>/src/domain/models/$1",
+  //   "^@UseCases(.*)$": "<rootDir>/src/domain/usecases/$1",
+  //   "^@Libs(.*)$": "<rootDir>/src/domain/libraries/$1",
+  //   "^@Data(.*)$": "<rootDir>/src/data/$1",
+  //   "^@Mocks(.*)$": "<rootDir>/src/tests/mocks/$1",
+  // },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
   // modulePathIgnorePatterns: [],
@@ -124,9 +124,9 @@ module.exports = {
   // rootDir: undefined,
 
   // A list of paths to directories that Jest should use to search for files in
-  // roots: [
-  //   "<rootDir>/src"
-  // ],
+  roots: [
+    "<rootDir>/src"
+  ],
 
   // Allows you to use a custom runner instead of Jest's default test runner
   // runner: "jest-runner",
