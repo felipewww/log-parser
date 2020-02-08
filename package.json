@@ -4,6 +4,7 @@
   "description": "A basic quake3 game log parser",
   "main": "app.js",
   "scripts": {
+    "watch": "tsc -w --preserveWatchOutput & nodemon dist/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
