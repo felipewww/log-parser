@@ -8,7 +8,17 @@
     "experimentalDecorators": true,
     "inlineSourceMap": true,
     "outDir": "dist",
-    "baseUrl": "src"
+    "baseUrl": "src",
+    "paths": {
+      "@Presentation/*": ["Presentation/*"],
+      "@Domain/*": ["Domain/*"],
+      "@Data/*": ["Data/*"],
+      "@Tests/*": ["Tests/*"],
+      "*": [
+        "node_modules/*",
+        "src/types/*"
+      ]
+    }
   },
   "include": [
     "src/**/*"
