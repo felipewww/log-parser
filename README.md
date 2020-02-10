@@ -23,3 +23,22 @@ This app parses a Quake3 game log about every match retrieving information about
 ```
 $ docker-compose up --build
 ```
+
+## Testing
+
+#### Development environment
+- In development mode is required to access container and run watch script, you can run two kinds of
+scripts, verbose or silent.
+
+```
+$ docker exec -it lab-log-parser bash
+
+# verbose
+/app# $ npm run test:watch
+
+# or silent
+/app# $ npm run test:watch-silent
+```
+#### Coverage
+
+- Just running <strong>npm run test</strong> will run all tests and make a coverage files in root folder
