@@ -2,9 +2,12 @@ import {KillsParserPresenter} from "@Presentation/Presenters/KillsParserPresente
 import {KillParserUseCase} from "@Domain/UseCases/KillParserUseCase";
 import {FullLogEntity} from "@Domain/Entites/FullLogEntity";
 import {InternalServerError} from "@Presentation/Utils/HttpResponse/InternalServerError";
+import {GameLogRepository} from "@Data/Repositories/GameLogRepository";
 
 function makeKillParserUseCase() {
-    return new KillParserUseCase(new FullLogEntity());
+    return new KillParserUseCase(
+        new FullLogEntity()
+    );
 }
 
 function makeKillsParserPresenter(killParserUseCaseStub: KillParserUseCase) {

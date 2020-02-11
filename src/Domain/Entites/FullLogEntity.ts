@@ -1,13 +1,13 @@
-import {GameLogRepository} from "@Data/Repositories/GameLogRepository";
+import {GameLogRepositoryContract} from "@Domain/Contracts/Repositories/GameLogRepositoryContract";
 
 export class FullLogEntity {
     private logs: Array<string>;
 
-    async getSourceData(): Promise<any> {
+    async getSourceData(gameLogRepository: GameLogRepositoryContract): Promise<any> {
         return new Promise((resolve, reject) => {
-            const repo = new GameLogRepository();
-            repo.getFullLog()
+            gameLogRepository.getFullLog()
                 .then(res => {
+                    this.logs = res;
                     resolve(res);
                 })
                 .catch(err => {

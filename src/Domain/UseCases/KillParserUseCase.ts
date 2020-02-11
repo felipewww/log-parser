@@ -1,4 +1,5 @@
 import {FullLogEntity} from "@Domain/Entites/FullLogEntity";
+import {GameLogRepository} from "@Data/Repositories/GameLogRepository";
 
 export class KillParserUseCase {
     constructor(
@@ -7,6 +8,6 @@ export class KillParserUseCase {
     }
 
     public async getFullLogEntity() {
-        await this.fullLogEntity.getSourceData();
+        await this.fullLogEntity.getSourceData(new GameLogRepository());
     }
 }
