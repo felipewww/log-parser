@@ -1,5 +1,5 @@
 export class LogLineValidations {
-    public static matchesGameDataLine(line: string) {
+    public static matchesGameDataLine(line: string): boolean {
         if (
             line.match('InitGame:')
             || line.match('ShutdownGame:')
@@ -20,5 +20,9 @@ export class LogLineValidations {
                 return 'info';
             }
         }
+    }
+
+    public static matchKillInfo(line: string): boolean {
+        return !!line.match('killed');
     }
 }

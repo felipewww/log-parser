@@ -15,5 +15,7 @@ export class KillParserUseCase {
 
     public parseFullLogInGames() {
         this.gameEntity.parseLogAsGames(this.fullLogEntity);
+        const gamesFilteredOnlyWithKillsInfo = this.gameEntity.getGamesKills();
+        console.log(gamesFilteredOnlyWithKillsInfo);
     }
 }
