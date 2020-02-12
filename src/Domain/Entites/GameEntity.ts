@@ -1,19 +1,24 @@
 import {FullLogEntity} from "@Domain/Entites/FullLogEntity";
-import {LogLineValidations} from "@Domain/Utils/LogLineValidations";
+import {LogRowValidator} from "@Domain/Utils/LogRowValidator";
+
+export interface IGameKills {
+    clientConnectionsRows: Array<string>,
+    killsRows: Array<string>,
+}
 
 export class GameEntity {
     private games: Array<Array<string>> = [];
 
     public parseLogAsGames(fullLogEntity: FullLogEntity) {
         let gameConnectionData: Array<any> = [];
-        fullLogEntity.getLogs().forEach((line: string) => {
-            switch (LogLineValidations.lineType(line)) {
+        fullLogEntity.getLogs().forEach((row: string) => {
+            switch (LogRowValidator.rowType(row)) {
                 case "init":
                     gameConnectionData = [];
                     break;
 
                 case "info":
-                    gameConnectionData.push(line);
+                    gameConnectionData.push(row);
                     break;
 
                 case "end":
@@ -26,21 +31,32 @@ export class GameEntity {
         return this.games;
     }
 
-    public getGamesKills(): Array<Array<string>> {
-        let gamesFilteredOnlyWithKillsInfo: Array<Array<string>> = [];
+    public getGamesKills(): Array<IGameKills> {
+        let filtered: Array<IGameKills> = [];
 
         this.games.forEach((game: Array<string>) => {
+            let clientConnectionRows: Array<string> = [];
             let gameKillsInfo: Array<string> = [];
 
-            game.forEach(line => {
-                if ( LogLineValidations.matchKillInfo(line) ) {
-                    gameKillsInfo.push(line);
+            game.forEach(row => {
+                clientConnectionRows = [];
+                switch (LogRowValidator.infoType(row)) {
+                    case "kill":
+                        gameKillsInfo.push(row);
+                        break;
+
+                    case "clientConnection":
+                        // clientConnectionRows.push(row);
+                        break;
                 }
             });
 
-            gamesFilteredOnlyWithKillsInfo.push(gameKillsInfo);
+            filtered.push({
+                clientConnectionsRows: clientConnectionRows,
+                killsRows: gameKillsInfo,
+            });
         });
 
-        return gamesFilteredOnlyWithKillsInfo;
+        return filtered;
     }
 }

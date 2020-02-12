@@ -19,7 +19,7 @@ describe('GameEntity', () => {
         expect.assertions(2);
 
         underTest.parseLogAsGames(fullLogEntityStub)
-        expect(underTest.getGamesKills()[0].length).toBe(0);
-        expect(underTest.getGamesKills()[1].length).toBe(11);
+        expect(underTest.getGamesKills()[0].killsRows.length).toBe(0);
+        expect(underTest.getGamesKills()[1].killsRows.length).toBe(11);
     })
 })
