@@ -1,5 +1,5 @@
-import {GameEntity} from "@Domain/Entites/GameEntity";
-import {FullLogEntity} from "@Domain/Entites/FullLogEntity";
+import {GameEntity} from "@Domain/Entities/GameEntity";
+import {FullLogEntity} from "@Domain/Entities/FullLogEntity";
 import {logInLines} from "@Tests/Mocks/FullLogDataMock";
 
 let underTest = new GameEntity();

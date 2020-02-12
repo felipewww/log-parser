@@ -1,4 +1,4 @@
-import {FullLogEntity} from "@Domain/Entites/FullLogEntity";
+import {FullLogEntity} from "@Domain/Entities/FullLogEntity";
 import {GameLogRepository} from "@Data/Repositories/GameLogRepository";
 
 let underTest: FullLogEntity = new FullLogEntity();

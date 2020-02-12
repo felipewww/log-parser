@@ -1,4 +1,4 @@
-import {FullLogEntity} from "@Domain/Entites/FullLogEntity";
+import {FullLogEntity} from "@Domain/Entities/FullLogEntity";
 import {LogRowValidator} from "@Domain/Utils/LogRowValidator";
 
 export interface IGameKills {

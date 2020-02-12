@@ -1,6 +1,6 @@
-import {FullLogEntity} from "@Domain/Entites/FullLogEntity";
+import {FullLogEntity} from "@Domain/Entities/FullLogEntity";
 import {GameLogRepository} from "@Data/Repositories/GameLogRepository";
-import {GameEntity} from "@Domain/Entites/GameEntity";
+import {GameEntity} from "@Domain/Entities/GameEntity";
 
 export class KillParserUseCase {
     constructor(
