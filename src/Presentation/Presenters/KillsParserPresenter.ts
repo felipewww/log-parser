@@ -1,28 +1,31 @@
 import {KillParserUseCase} from "@Domain/UseCases/KillParserUseCase";
-import {HttpResponse} from "@Presentation/Contracts/Http";
+import {HttpResponse, IHttpRequest} from "@Presentation/Contracts/Http";
 import {Success} from "@Presentation/Utils/HttpResponse/Success";
 import {InternalServerError} from "@Presentation/Utils/HttpResponse/InternalServerError";
 import {FullLogEntity} from "@Domain/Entities/FullLogEntity";
 import {GameEntity} from "@Domain/Entities/GameEntity";
 import {GameKillsEntity} from "@Domain/Entities/GameKillsEntity";
+import {Presenter} from "@Presentation/Presenters/Presenter";
 
-export class KillsParserPresenter {
+export class KillsParserPresenter extends Presenter {
 
     public useCase: KillParserUseCase;
+    private gamesResponse: any;
 
-    constructor() {
+    constructor(request: IHttpRequest) {
+        super(request);
         this.useCase = new KillParserUseCase(
             new FullLogEntity(),
             new GameEntity(),
             new GameKillsEntity(),
-            'game_9'
+            this.request.params.gameCode
         )
     }
 
     async handle(): Promise<HttpResponse> {
         try {
             await this.callUseCase();
-            return new Success();
+            return new Success(this.gamesResponse);
         } catch (e) {
             return new InternalServerError()
         }
@@ -30,7 +33,6 @@ export class KillsParserPresenter {
 
     async callUseCase() {
         await this.useCase.init()
-        const res = this.useCase.getResult();
-        console.log(res)
+        this.gamesResponse = this.useCase.getResult();
     }
 }

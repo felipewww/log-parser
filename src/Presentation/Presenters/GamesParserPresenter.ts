@@ -1,15 +1,18 @@
-import {HttpResponse} from "@Presentation/Contracts/Http";
+import {HttpResponse, IHttpRequest} from "@Presentation/Contracts/Http";
 import {Success} from "@Presentation/Utils/HttpResponse/Success";
 import {InternalServerError} from "@Presentation/Utils/HttpResponse/InternalServerError";
 import {FullLogEntity} from "@Domain/Entities/FullLogEntity";
 import {GameEntity} from "@Domain/Entities/GameEntity";
 import {GamesParserUseCase} from "@Domain/UseCases/GamesParserUseCase";
+import {Presenter} from "@Presentation/Presenters/Presenter";
 
-export class GamesParserPresenter {
+export class GamesParserPresenter extends Presenter {
 
     public useCase: GamesParserUseCase;
+    private gamesResponse: any;
 
-    constructor() {
+    constructor(request: IHttpRequest) {
+        super(request);
         this.useCase = new GamesParserUseCase(
             new FullLogEntity(),
             new GameEntity()
@@ -19,7 +22,7 @@ export class GamesParserPresenter {
     async handle(): Promise<HttpResponse> {
         try {
             await this.callUseCase();
-            return new Success();
+            return new Success(this.gamesResponse);
         } catch (e) {
             return new InternalServerError()
         }
@@ -27,7 +30,6 @@ export class GamesParserPresenter {
 
     async callUseCase() {
         await this.useCase.init()
-        const games = this.useCase.getResult();
-        console.log(games);
+        this.gamesResponse = this.useCase.getResult();
     }
 }

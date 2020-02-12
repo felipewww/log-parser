@@ -4,8 +4,8 @@ export interface IHttpRequest {
 }
 
 export abstract class HttpResponse {
-    protected error?: Error;
-    protected data?: any;
+    public error?: Error;
+    public data?: any;
 
     constructor(
         protected statusCode: 200|400|404|500

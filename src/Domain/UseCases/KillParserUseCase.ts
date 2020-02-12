@@ -4,11 +4,12 @@ import {GameEntity} from "@Domain/Entities/GameEntity";
 import {GameKillsEntity} from "@Domain/Entities/GameKillsEntity";
 
 export class KillParserUseCase {
+
     constructor(
         private fullLogEntity: FullLogEntity,
         private gameEntity: GameEntity,
         private gameKillsEntity: GameKillsEntity,
-        private gameCode?: string,
+        private gameCode?: string
     ) {
     }
 

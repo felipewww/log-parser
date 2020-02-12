@@ -1,7 +1,7 @@
 import {GamesParserPresenter} from "@Presentation/Presenters/GamesParserPresenter";
 import {InternalServerError} from "@Presentation/Utils/HttpResponse/InternalServerError";
 
-let underTest = new GamesParserPresenter();
+let underTest = new GamesParserPresenter({body: {}, params: {}});
 
 describe('GamesParserPresenter', () => {
     test('should return 500 if something goes wrong while get log data', async () => {

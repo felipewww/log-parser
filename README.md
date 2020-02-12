@@ -34,10 +34,10 @@ scripts, verbose or silent.
 $ docker exec -it lab-log-parser bash
 
 # verbose
-/app# $ npm run test:watch
+$ npm run test:watch
 
 # or silent
-/app# $ npm run test:watch-silent
+$ npm run test:watch-silent
 ```
 #### Coverage
 
