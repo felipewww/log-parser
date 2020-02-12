@@ -14,10 +14,10 @@ describe('GameEntity', () => {
         expect.assertions(4);
 
         underTest.parseLogAsGames(fullLogEntityStub)
-        expect(underTest.getGamesKills()[0].killsRows.length).toBe(0);
-        expect(underTest.getGamesKills()[1].killsRows.length).toBe(11);
+        expect(underTest.getFilteringKills()[0].killsRows.length).toBe(0);
+        expect(underTest.getFilteringKills()[1].killsRows.length).toBe(11);
 
-        expect(underTest.getGamesKills()[0].clientConnectionsRows.length).toBe(2);
-        expect(underTest.getGamesKills()[1].clientConnectionsRows.length).toBe(5);
+        expect(underTest.getFilteringKills()[0].clientConnectionsRows.length).toBe(2);
+        expect(underTest.getFilteringKills()[1].clientConnectionsRows.length).toBe(5);
     })
 })

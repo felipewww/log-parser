@@ -27,30 +27,63 @@ export class GameEntity {
         return this.games;
     }
 
-    public getGamesKills(): Array<IGameKillsRawRows> {
+    public getFilteringKills(gameCode?: string): Array<IGameKillsRawRows>  {
+        if (!gameCode) {
+            return this.getAll()
+        } else {
+            const found = this.getByCode(gameCode);
+            if (found) {
+                return [found]
+            } else {
+                return [];
+            }
+        }
+    }
+
+    private getAll(): Array<IGameKillsRawRows> {
         let filtered: Array<IGameKillsRawRows> = [];
 
         this.games.forEach((game: Array<string>) => {
-            let clientConnectionRows: Array<string> = [];
-            let gameKillsInfo: Array<string> = [];
-
-            game.forEach(row => {
-                switch (LogRowValidator.infoType(row)) {
-                    case "kill":
-                        gameKillsInfo.push(row);
-                        break;
-
-                    case "clientConnection":
-                        clientConnectionRows.push(row);
-                        break;
-                }
-            });
-
-            filtered.push({
-                clientConnectionsRows: clientConnectionRows,
-                killsRows: gameKillsInfo,
-            });
+            filtered.push(this.filterByKils(game));
         });
+
+        return filtered;
+    }
+
+    private getByCode(gameCode: string): IGameKillsRawRows {
+        const idx = Number(gameCode.substring(5));
+
+        let game = this.games[idx];
+
+        if (!game) {
+            return;
+        }
+
+        return this.filterByKils(game);
+    }
+
+    private filterByKils(game: Array<string>): IGameKillsRawRows {
+        let filtered: IGameKillsRawRows;
+
+        let clientConnectionRows: Array<string> = [];
+        let gameKillsInfo: Array<string> = [];
+
+        game.forEach(row => {
+            switch (LogRowValidator.infoType(row)) {
+                case "kill":
+                    gameKillsInfo.push(row);
+                    break;
+
+                case "clientConnection":
+                    clientConnectionRows.push(row);
+                    break;
+            }
+        });
+
+        filtered = {
+            clientConnectionsRows: clientConnectionRows,
+            killsRows: gameKillsInfo,
+        };
 
         return filtered;
     }

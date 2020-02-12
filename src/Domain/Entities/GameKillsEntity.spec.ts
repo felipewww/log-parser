@@ -5,7 +5,7 @@ let underTest = new GameKillsEntity();
 const { gameEntityStub } = makeFullLogAsGameEntity()
 
 describe('GameKillsEntity', () => {
-    underTest.toJSON(gameEntityStub.getGamesKills());
+    underTest.toJSON(gameEntityStub.getFilteringKills());
 
     test('Should fill player names per match correctly', () => {
         expect(underTest.getGames()[0].players).toMatchObject(['Isgalamido'])

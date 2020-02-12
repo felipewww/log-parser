@@ -16,10 +16,10 @@ describe('LogRowParser', () => {
     })
 
     test('totalKillsPerPlayer', () => {
-        gameEntityStub.getGamesKills()[1].killsRows
+        gameEntityStub.getFilteringKills()[1].killsRows
         let res = LogRowParser.totalKillsPerPlayer(
             ['Isgalamido','Dono da Bola','Mocinha'],
-            gameEntityStub.getGamesKills()[1].killsRows
+            gameEntityStub.getFilteringKills()[1].killsRows
         )
     })
 })

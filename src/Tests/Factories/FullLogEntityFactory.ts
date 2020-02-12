@@ -11,7 +11,7 @@ function makeFullLogAsGameEntity() {
     gameEntityStub.parseLogAsGames(fullLogEntityStub)
 
     let gameKillsEntity = new GameKillsEntity();
-    gameKillsEntity.toJSON(gameEntityStub.getGamesKills());
+    gameKillsEntity.toJSON(gameEntityStub.getFilteringKills());
 
     return {
         fullLogEntityStub,
