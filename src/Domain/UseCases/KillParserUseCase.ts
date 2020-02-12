@@ -11,12 +11,13 @@ export class KillParserUseCase {
     ) {
     }
 
-    public async getFullLogEntity() {
+    public async init() {
         await this.fullLogEntity.getSourceData(new GameLogRepository());
-    }
-
-    public parseFullLogInGames() {
         this.gameEntity.parseLogAsGames(this.fullLogEntity);
         this.gameKillsEntity.toJSON(this.gameEntity.getGamesKills())
+    }
+
+    public getResult() {
+        this.gameKillsEntity.getGames();
     }
 }

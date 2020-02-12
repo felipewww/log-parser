@@ -38,6 +38,8 @@ export class GameKillsEntity {
                 kills
             });
         });
+
+        return this;
     }
 
     public getGames(): Array<IGameKillsParsed> {
