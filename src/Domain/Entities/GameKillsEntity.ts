@@ -15,7 +15,6 @@ export class GameKillsEntity {
     private games: Array<IGameKillsParsed> = [];
 
     public toJSON(gameKillsRawRows: Array<IGameKillsRawRows>) {
-        let gamesParsed: Array<IGameKillsParsed> = [];
         gameKillsRawRows.forEach(game => {
             let playerNames: Array<string> = [];
 
@@ -26,15 +25,22 @@ export class GameKillsEntity {
                 }
             });
 
-            gamesParsed.push({
-                total_kills: 0,
-                players: playerNames,
-                kills: {
-                    'p': 1
-                }
-            })
-        })
+            const matchKills = LogRowParser.totalKillsPerPlayer(playerNames, game.killsRows);
 
-        return gamesParsed;
+            let kills: { [key:string]: number } = {};
+            matchKills.forEach(info => {
+                kills[info.playerName] = info.totalKills
+            });
+
+            this.games.push({
+                total_kills: game.killsRows.length,
+                players: playerNames,
+                kills
+            });
+        });
+    }
+
+    public getGames(): Array<IGameKillsParsed> {
+        return this.games;
     }
 }

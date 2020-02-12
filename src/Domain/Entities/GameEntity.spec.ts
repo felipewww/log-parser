@@ -1,8 +1,8 @@
 import {GameEntity} from "@Domain/Entities/GameEntity";
-import {makeFullLogEntityStub} from "@Tests/Factories/FullLogEntityFactory";
+import {makeFullLogAsGameEntity} from "@Tests/Factories/FullLogEntityFactory";
 
 let underTest = new GameEntity();
-let fullLogEntityStub = makeFullLogEntityStub();
+const { fullLogEntityStub } = makeFullLogAsGameEntity()
 
 describe('GameEntity', () => {
     test('parseLogAsGames - Should separate a log array (mocked) in 2 pieces of array where each one is a complete game info', () => {

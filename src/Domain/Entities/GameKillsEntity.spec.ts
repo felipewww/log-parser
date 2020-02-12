@@ -1,16 +1,19 @@
-import {makeFullLogEntityStub} from "@Tests/Factories/FullLogEntityFactory";
-import {GameEntity} from "@Domain/Entities/GameEntity";
 import {GameKillsEntity} from "@Domain/Entities/GameKillsEntity";
+import {makeFullLogAsGameEntity} from "@Tests/Factories/FullLogEntityFactory";
 
-let fullLogEntityStub = makeFullLogEntityStub();
-let gameEntityStub = new GameEntity();
-gameEntityStub.parseLogAsGames(fullLogEntityStub)
 let underTest = new GameKillsEntity();
+const { gameEntityStub } = makeFullLogAsGameEntity()
 
 describe('GameKillsEntity', () => {
-    test('', () => {
-        let parsed = underTest.toJSON(gameEntityStub.getGamesKills());
-        expect(parsed[0].players).toMatchObject(['Isgalamido'])
-        expect(parsed[1].players).toMatchObject(['Isgalamido','Dono da Bola','Mocinha'])
+    underTest.toJSON(gameEntityStub.getGamesKills());
+
+    test('Should fill player names per match correctly', () => {
+        expect(underTest.getGames()[0].players).toMatchObject(['Isgalamido'])
+        expect(underTest.getGames()[1].players).toMatchObject(['Isgalamido','Dono da Bola','Mocinha'])
+    })
+
+    test('Shoudl fill total_kills correctly', () => {
+        expect(underTest.getGames()[0].total_kills).toBe(0)
+        expect(underTest.getGames()[1].total_kills).toBe(11)
     })
 })
