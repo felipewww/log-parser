@@ -1,11 +1,13 @@
 import {FullLogEntity} from "@Domain/Entities/FullLogEntity";
 import {GameLogRepository} from "@Data/Repositories/GameLogRepository";
 import {GameEntity} from "@Domain/Entities/GameEntity";
+import {GameKillsEntity} from "@Domain/Entities/GameKillsEntity";
 
 export class KillParserUseCase {
     constructor(
         private fullLogEntity: FullLogEntity,
-        private gameEntity: GameEntity
+        private gameEntity: GameEntity,
+        private gameKillsEntity: GameKillsEntity
     ) {
     }
 
@@ -15,7 +17,6 @@ export class KillParserUseCase {
 
     public parseFullLogInGames() {
         this.gameEntity.parseLogAsGames(this.fullLogEntity);
-        const gamesFilteredOnlyWithKillsInfo = this.gameEntity.getGamesKills();
-        console.log(gamesFilteredOnlyWithKillsInfo);
+        this.gameKillsEntity.toJSON(this.gameEntity.getGamesKills())
     }
 }

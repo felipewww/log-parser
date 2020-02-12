@@ -3,11 +3,13 @@ import {KillParserUseCase} from "@Domain/UseCases/KillParserUseCase";
 import {FullLogEntity} from "@Domain/Entities/FullLogEntity";
 import {InternalServerError} from "@Presentation/Utils/HttpResponse/InternalServerError";
 import {GameEntity} from "@Domain/Entities/GameEntity";
+import {GameKillsEntity} from "@Domain/Entities/GameKillsEntity";
 
 function makeKillParserUseCase() {
     return new KillParserUseCase(
         new FullLogEntity(),
-        new GameEntity()
+        new GameEntity(),
+        new GameKillsEntity()
     );
 }
 

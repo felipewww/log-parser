@@ -1,10 +1,6 @@
 import {FullLogEntity} from "@Domain/Entities/FullLogEntity";
 import {LogRowValidator} from "@Domain/Utils/LogRowValidator";
-
-export interface IGameKills {
-    clientConnectionsRows: Array<string>,
-    killsRows: Array<string>,
-}
+import {IGameKillsRawRows} from "@Domain/Entities/GameKillsEntity";
 
 export class GameEntity {
     private games: Array<Array<string>> = [];
@@ -31,22 +27,21 @@ export class GameEntity {
         return this.games;
     }
 
-    public getGamesKills(): Array<IGameKills> {
-        let filtered: Array<IGameKills> = [];
+    public getGamesKills(): Array<IGameKillsRawRows> {
+        let filtered: Array<IGameKillsRawRows> = [];
 
         this.games.forEach((game: Array<string>) => {
             let clientConnectionRows: Array<string> = [];
             let gameKillsInfo: Array<string> = [];
 
             game.forEach(row => {
-                clientConnectionRows = [];
                 switch (LogRowValidator.infoType(row)) {
                     case "kill":
                         gameKillsInfo.push(row);
                         break;
 
                     case "clientConnection":
-                        // clientConnectionRows.push(row);
+                        clientConnectionRows.push(row);
                         break;
                 }
             });
