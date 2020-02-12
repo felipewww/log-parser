@@ -13,6 +13,7 @@ export class KillsParserPresenter {
     async handle(): Promise<HttpResponse> {
         try {
             await this.useCase.getFullLogEntity();
+            this.useCase.parseFullLogInGames();
             return new Success();
         } catch (e) {
             return new InternalServerError()
